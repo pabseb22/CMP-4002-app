@@ -1,0 +1,32 @@
+<mat-dialog-content style="display: flex;flex-direction: column;gap: 20px;justify-content: center;align-items: center;">
+  <br>
+  <div style="display:flex;align-items: center;gap: 10px;justify-content: center;width: 100%;">
+    <div>
+      <a>Tiempo de la subasta:</a>
+    </div>
+  <mat-button-toggle-group #toggleBtn="matButtonToggleGroup">
+    <mat-button-toggle value="0">1 Day</mat-button-toggle>
+    <mat-button-toggle value="1">2 Days</mat-button-toggle>
+    <mat-button-toggle value="2">3 Days</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  </div>
+  <div style="display:flex;align-items: center;gap: 10px;justify-content: center;width: 100%;">
+    <a>Valor inicial</a>
+    <input matInput placeholder="Valor Inicial">
+  </div>
+
+    <mat-selection-list #itemsList [multiple]="false" style="align-self: flex-start;width: 100%;">
+      <ng-container  *ngFor="let i of data.items">
+          <mat-list-option [value]="i" *ngIf="i.available" >
+            {{i.name}}
+          </mat-list-option>
+      </ng-container>
+    </mat-selection-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Close</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Auction</button>
+</mat-dialog-actions>

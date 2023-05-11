@@ -1,0 +1,33 @@
+.card{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10vh;
+  gap:40px
+}
+
+.card:hover {
+        border: 2px solid  red;
+        border-radius: 20px;
+        cursor:pointer;
+}
+img{
+  max-height: 9vh;
+
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+h3{
+  font-size: 13px;
+  font-family:"Lucida Console", "Courier New", monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

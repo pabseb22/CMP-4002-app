@@ -1,0 +1,18 @@
+<mat-sidenav-container class="sidenav">
+  <mat-sidenav opened mode="side" class="side">
+    <mat-nav-list class="list">
+      <div class="routes">
+        <a mat-list-item class="title" disabled>AuctionUSFQ</a>
+        <a mat-list-item class="item" [routerLink]="['buyer']">Buy</a>
+        <a mat-list-item class="item" *ngIf="seller" [routerLink]="['seller']">Manage Auctions</a>
+      </div>
+      <div>
+        <a mat-list-item [routerLink]="['profile']">Profile</a>
+      </div>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet class="outlet"></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
