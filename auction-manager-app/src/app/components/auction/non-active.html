@@ -1,0 +1,9 @@
+<mat-dialog-content>
+  <h1>Item {{data.id}}</h1>
+  <p> Starting Price:   {{data.price}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions style="display:flex;justify-content: space-between; width: 80vh;">
+    <button mat-button class="mat-raised-button"(click)="close()">Close</button>
+    <button mat-button class="mat-raised-button mat-primary"(click)="save()">Subscribe</button>
+</mat-dialog-actions>

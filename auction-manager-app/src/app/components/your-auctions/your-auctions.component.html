@@ -1,0 +1,13 @@
+
+<div class="container">
+  <div class="selling">
+    <h1>Winning Auctions</h1>
+    <ng-container *ngFor="let i of auctions">
+      <app-auction [type]=2 [auction]=i></app-auction>
+    </ng-container>
+    <h1>Lost Auctions</h1>
+    <ng-container *ngFor="let i of auctions">
+      <app-auction [type]=0 [auction]=i></app-auction>
+    </ng-container>
+  </div>
+

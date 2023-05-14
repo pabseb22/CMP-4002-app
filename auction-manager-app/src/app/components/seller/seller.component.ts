@@ -19,10 +19,12 @@ import { finished } from 'stream';
 export class SellerComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
-    public itemsService: ItemsService
+    public itemsService: ItemsService,
+    public auctionservice:AuctionService
   ) { }
 
-  items:Item[]=[]
+  items:Auction[]=[]
+  items_selling:Item[]=[]
 
   ngOnInit(): void {
     this.getItems(2);
@@ -30,21 +32,21 @@ export class SellerComponent implements OnInit {
 
   getItems(userID:number){
     //request;
-    this.items = this.itemsService.getItems()
+    this.items = this.auctionservice.getAuctions()
+    this.items_selling = this.itemsService.getItems()
     return this.items
   }
 
 
-  addItem(){
-  }
 
   openDialog() {
     this.dialog.open(addAuction, {
       data: {
-        items: this.items
+        items: this.items_selling
       },
     });
   }
+
 }
 
 @Component({
@@ -54,11 +56,13 @@ export class SellerComponent implements OnInit {
 export class addAuction {
   @ViewChild('itemsList') itemsList: MatSelectionList;
   @ViewChild('toggleBtn') toggleBtn: MatButtonToggleGroup;
+
   fontStyleControl = new FormControl('');
   time:string;
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     private dialogRef: MatDialogRef<addAuction>,
-    private auctionservice:AuctionService
+    private auctionservice:AuctionService,
+    private itemservice:ItemsService
   ) {
   }
   save() {
@@ -66,7 +70,9 @@ export class addAuction {
     let start_time =  new Date()
     let da = new Date()
     da.setDate((start_time.getDate() + parseInt(this.toggleBtn.value)))
-    this.auctionservice.addAuction(new Auction(0,item_to_be_auctioned[0],0,start_time,da))
+    this.auctionservice.addAuction(new Auction(item_to_be_auctioned[0].id,item_to_be_auctioned[0],item_to_be_auctioned[0].starting_price,start_time,da,[]))
+    this.itemservice.changeItemStatus(item_to_be_auctioned[0].id ,false)
+
     this.close()
   }
 

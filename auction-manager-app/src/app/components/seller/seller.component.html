@@ -1,12 +1,11 @@
 <div class="container">
   <div class="top">
-    <button mat-raised-button (click)="addItem()"> Add Item</button>
     <button mat-raised-button (click)="openDialog()"> Create Auction</button>
   </div>
 
   <div class="selling">
-    <h1> Items you are selling</h1>
-    <app-item *ngFor="let i of items" [item]=i></app-item>
+    <h1>Current Auctions</h1>
+    <app-auction *ngFor="let i of items" [auction]=i></app-auction>
   </div>
 </div>
 

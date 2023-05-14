@@ -1,3 +1,4 @@
+import { Bid } from "./bid";
 import { Buyer } from "./buyer";
 import { Item } from "./item";
 
@@ -8,6 +9,7 @@ export class Auction {
     public price:number,
     public startDate:Date,
     public endDate:Date,
+    public bids:Bid[],
   ){
 
   }

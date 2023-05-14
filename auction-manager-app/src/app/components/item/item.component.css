@@ -1,17 +1,53 @@
 .card{
   display: flex;
+  background-color: rgba(255, 99, 71, 0.1);
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   height: 10vh;
-  gap:40px
+  gap:40px;
+  border-radius: 20px;
+  border: 2px solid  rgba(255, 99, 71, 0.1);
+}
+
+.card_non{
+  display: flex;
+  background-color: rgba(255, 99, 71, 0.1);
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10vh;
+  gap:40px;
+  border-radius: 20px;
+  border: 2px solid  rgba(255,99,71,0.1);
+}
+
+.card_av{
+  display: flex;
+  background-color: rgba(2, 225, 2, 0.1);
+  border: 2px solid  rgba(2, 225, 2, 0.1);
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10vh;
+  gap:40px;
+  border-radius: 20px;
 }
 
 .card:hover {
-        border: 2px solid  red;
+        border: 2px solid  white;
         border-radius: 20px;
         cursor:pointer;
 }
+
+.card_av:hover {
+        border: 2px solid  white;
+        border-radius: 20px;
+        cursor:pointer;
+}
+.card:hover {
+}
+
 img{
   max-height: 9vh;
 
@@ -31,3 +67,10 @@ h3{
   text-overflow: ellipsis;
 }
 
+.buttonSubscribe{
+  background-color: white;
+}
+
+.buttonSubscribe:hover{
+  background-color: grey;
+}

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Item</h1>
+
+<mat-dialog-content style="display: flex;flex-direction: column;gap: 10px;">
+  <mat-form-field>
+    <mat-label>Item id</mat-label>
+    <input matInput #id>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Item Name</mat-label>
+    <input matInput #name >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Item Starting Price</mat-label>
+    <input matInput #price>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Link to Image</mat-label>
+    <input matInput #image>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Add Description</mat-label>
+    <input matInput #des>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="submit" (click)="close()"> Cancel</button>
+  <button mat-button type="submit" (click)="addItem({id:id.value,name:name.value,price:price.value,image:image.value,des:des.value})"> Create item</button>
+</mat-dialog-actions>

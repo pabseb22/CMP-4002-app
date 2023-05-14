@@ -11,7 +11,7 @@ export class AuctionService {
   auctions:Auction[] =[];
   constructor(private itemservice:ItemsService) {
     let items = this.itemservice.getItems();
-    this.auctions.push(new Auction(0,items[0],1,new Date(),new Date()))
+    this.auctions.push(new Auction(0,items[0],1,new Date(),new Date(),[]))
   }
 
   getAuctions(){
