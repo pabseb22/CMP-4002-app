@@ -17,7 +17,6 @@ export class YourAuctionsComponent implements OnInit {
 
   auctions:Auction[]=[]
   loosingAuctions:Auction[]=[]
-  closedAuctions:Auction[]=[]
 
   ngOnInit(): void {
     this.getAuctions();
@@ -27,14 +26,12 @@ export class YourAuctionsComponent implements OnInit {
     let aux = this.auctionservice.getAuctions();
     let email = this.activeUserService.getUser()
     for (let i = 0, len = aux.length; i < len; i++) {
-      if(aux[i].endDate> new Date()){
-        this.closedAuctions.push(aux[i]);
-        continue
-      }
-      for(let j = 0, len = aux[i].bids.length;j<len;j++){
-        if(aux[i].bids[j].user == email && aux[i].bids[j].amount==aux[i].price){
+      for(let j =0, len = aux[i].bids.length;i<len;i++){
+        if(aux[i].bids[i].user == email && aux[i].bids[i].amount==aux[i].price){
           this.auctions.push(aux[i]);
-        }else if (aux[i].bids[j].user==email){
+          return
+
+        }else if (aux[i].bids[i].user==email){
           this.loosingAuctions.push(aux[i])
         }
       }

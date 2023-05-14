@@ -23,5 +23,6 @@ export class BuyerComponent implements OnInit {
   getAuctions(){
     this.auctions =this.auctionservice.getAuctions();
   }
-  addItem(){};
+  addItem(){
+  };
 }

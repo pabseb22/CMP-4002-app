@@ -1,7 +1,7 @@
 import { Buyer } from "./buyer";
 
 export class Bid {
-  constructor(buyer:Buyer,amount:number){
+  constructor(public user:string, public amount:number){
 
   }
 }

@@ -9,8 +9,8 @@
     <div style="display: flex;gap: 10px;">
     <mat-form-field>
       <mat-label>Amount to Bid</mat-label>
-      <input  matInput name="" >
+      <input  matInput name="" #price>
     </mat-form-field>
-    <button mat-button class="mat-raised-button mat-primary"(click)="save()">Bid</button>
+    <button mat-button class="mat-raised-button mat-primary"(click)="save(price.value)">Bid</button>
     </div>
 </mat-dialog-actions>

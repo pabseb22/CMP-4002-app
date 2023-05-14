@@ -1,4 +1,4 @@
-<mat-card class="card" (click)="openDialog()">
+<mat-card [ngClass]="{'card':true, 'disabled':enroled}" (click)="openDialog()">
   <div class="col">
   <h3>Id:{{auction.id}}</h3>
   </div>

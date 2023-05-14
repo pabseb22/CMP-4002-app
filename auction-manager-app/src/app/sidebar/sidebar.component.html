@@ -8,9 +8,10 @@
         <a mat-list-item class="item" *ngIf="seller" [routerLink]="['your-auctions']">Your Auctions</a>
         <a mat-list-item class="item" *ngIf="seller" [routerLink]="['seller']">Manage Auctions</a>
         <a mat-list-item class="item" *ngIf="seller" [routerLink]="['manage-items']">Manage Items</a>
+        <a mat-list-item [routerLink]="['profile']">Profile</a>
       </div>
       <div>
-        <a mat-list-item [routerLink]="['profile']">Profile</a>
+        <a mat-list-item [routerLink]="['login']">LogOut</a>
       </div>
 
     </mat-nav-list>
