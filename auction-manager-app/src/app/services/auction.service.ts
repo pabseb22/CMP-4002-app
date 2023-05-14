@@ -25,6 +25,10 @@ export class AuctionService {
   }
 
   addAuction(acc:Auction){
+    let item = acc.items;
+    // for item.interested{
+    //   les mandas un mail
+    // }
     this.auctions.push(acc)
   }
 

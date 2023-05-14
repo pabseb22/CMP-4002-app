@@ -27,7 +27,7 @@ export class YourAuctionsComponent implements OnInit {
     let aux = this.auctionservice.getAuctions();
     let email = this.activeUserService.getUser()
     for (let i = 0, len = aux.length; i < len; i++) {
-      if(aux[i].endDate> new Date()){
+      if(aux[i].endDate > new Date()){
         this.closedAuctions.push(aux[i]);
         continue
       }
