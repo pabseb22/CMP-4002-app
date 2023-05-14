@@ -6,6 +6,7 @@ import { BuyerComponent } from './components/buyer/buyer.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SellerComponent } from './components/seller/seller.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: "**",
-    component: AppComponent
+    component: LoginComponent
   }
 
 ];
