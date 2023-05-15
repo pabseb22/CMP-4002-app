@@ -1,8 +1,8 @@
-<mat-card [ngClass]="{'card':item.available && type!=2,'card_av':!item.available,'card_non':type==2}" (click)="editItem()">
+<mat-card [ngClass]="{'card':item.available == 1 && type!=2,'card_av':!item.available,'card_non':type==2}" (click)="editItem()">
   <div class="col">
   <h3>Id:{{item.id}}</h3>
   </div>
-  <img src="{{item.imgsrc}}" alt="">
+  <img [src]="transform(item.imgsrc)" alt="">
   <div class="col">
   <h3>Name:{{item.name}}</h3>
   </div>

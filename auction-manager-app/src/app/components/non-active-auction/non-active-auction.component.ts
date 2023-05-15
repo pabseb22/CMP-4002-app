@@ -16,9 +16,11 @@ export class NonActiveAuctionComponent implements OnInit {
     this.getAuctions();
   }
   getAuctions(){
-    this.items =this.itemService.getItems();
+    this.itemService.getItems().subscribe((res:any)=>{
+      this.items = res;
+    });
     this.items = this.items.filter(function(it:Item){
-      return it.available == true
+      return it.available == 1
     })
   }
   addItem(){};

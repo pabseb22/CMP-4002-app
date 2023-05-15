@@ -32,9 +32,14 @@ export class SellerComponent implements OnInit {
 
   getItems(userID:number){
     //request;
-    this.items = this.auctionservice.getAuctions()
-    this.items_selling = this.itemsService.getItems()
-    return this.items
+    //this.items = this.auctionservice.getAuctions()
+    this.itemsService.getItems().subscribe((res:any)=>{
+      for(let i = 0; i< res.length; i++){
+        this.items.push(new Auction(0,res[i],1,new Date(),new Date(),[]))
+      }
+      this.items_selling = res;
+    });
+    //return this.items
   }
 
 
@@ -72,7 +77,7 @@ export class addAuction {
     da.setDate((start_time.getDate() + parseInt(this.toggleBtn.value)))
 
     this.auctionservice.addAuction(new Auction(item_to_be_auctioned[0].id,item_to_be_auctioned[0],item_to_be_auctioned[0].starting_price,start_time,da,[]))
-    this.itemservice.changeItemStatus(item_to_be_auctioned[0].id ,false)
+    this.itemservice.changeItemStatus(item_to_be_auctioned[0].id ,0)
     this.close()
   }
 

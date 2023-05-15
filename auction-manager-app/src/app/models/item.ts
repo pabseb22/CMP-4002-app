@@ -6,8 +6,7 @@ export class Item {
     public name:string,
     public imgsrc:string,
     public des:string,
-    public interested:string[], //emails
-    public available:boolean,
+    public available:number,
     public starting_price:number,
   ){
   }

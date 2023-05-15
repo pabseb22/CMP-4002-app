@@ -23,6 +23,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { NonActiveAuctionComponent } from './components/non-active-auction/non-active-auction.component';
 import { YourAuctionsComponent } from './components/your-auctions/your-auctions.component';
 import { addItem, ManageItemsComponent } from './components/manage-items/manage-items.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -57,8 +58,8 @@ import { addItem, ManageItemsComponent } from './components/manage-items/manage-
     MatButtonToggleModule,
     MatInputModule,
     MatFormFieldModule,
-    NgxSpinnerModule
-
+    NgxSpinnerModule,
+    HttpClientModule
 
   ],
   providers: [],

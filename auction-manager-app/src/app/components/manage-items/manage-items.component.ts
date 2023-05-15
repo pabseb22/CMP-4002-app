@@ -20,17 +20,19 @@ export class ManageItemsComponent implements OnInit {
   items:Item[]=[]
 
   ngOnInit(): void {
-    this.getItems(2);
+    this.getItems();
+    
   }
   refresh(value){
-    console.log("hello")
     if(value){
-      this.getItems(1)
+      this.getItems()
     }
   }
-  getItems(userID:number){
+  getItems(){
     //request;
-    this.items = this.itemsService.getItems()
+    this.itemsService.getItems().subscribe((res:any)=>{
+      this.items = res;
+    });
     return this.items
   }
   addItem(){
@@ -38,10 +40,14 @@ export class ManageItemsComponent implements OnInit {
   }
 
   openDialogItems() {
-    this.dialog.open(addItem, {
+    const dialogRef = this.dialog.open(addItem, {
       data: {
         items: this.items
       },
+    });
+
+    dialogRef.afterClosed().subscribe((res: any) => {
+      this.ngOnInit()
     });
   }
 
@@ -66,7 +72,12 @@ export class addItem {
       this.dialogRef.close();
   }
   addItem(data:any){
-    this.itemsService.addItem(new Item(data.id,data.name,data.image,data.des,[],true,data.price))
-    this.dialogRef.close()
+    this.itemsService.addItem(new Item(data.id,data.name,data.image,data.des,0,data.price)).subscribe((res:any)=>{
+      this.dialogRef.close()
+      
+    })
+    
   }
+
+  //TO DO: Delete Function
 }

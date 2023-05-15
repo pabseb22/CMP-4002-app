@@ -29,11 +29,15 @@ export class ItemComponent implements OnInit{
   subscribed:boolean;
 
   ngOnInit(): void {
-    if(this.item.interested.includes(this.activeUserService.getUser())){
-      this.subscribed=true;
-    }else if(!this.item.interested.includes(this.activeUserService.getUser())){
-      this.subscribed=false;
-    }
+    // if(this.item.interested.includes(this.activeUserService.getUser())){
+    //   this.subscribed=true;
+    // }else if(!this.item.interested.includes(this.activeUserService.getUser())){
+    //   this.subscribed=false;
+    // }
+  }
+
+  transform(value: string): string {
+    return value.replace(/'/g, '');
   }
 
   editItem(){
@@ -42,14 +46,19 @@ export class ItemComponent implements OnInit{
 
   openDialog() {
     if(this.type==1 && this.item.available){
-      this.dialog.open(editItem, {
+      const dialogRef = this.dialog.open(editItem, {
         data: {
           item: this.item
         },
     });
+    dialogRef.afterClosed().subscribe((res: any) => {
+      location.reload();
+    });
    }else if (!this.item.available){
       Swal.fire("This item is beign auctioned, it cannot be changed")
     }
+
+
   }
 
   subscribe(){
@@ -110,10 +119,12 @@ export class editItem {
   }
 
   edit(name:string,price:string,imgsrc:string,des:string) {
-    let aux = new Item(this.data.item.id,name,imgsrc,des,[],true,parseFloat(price))
+    let aux = new Item(this.data.item.id,name,imgsrc,des,1,parseFloat(price))
     this.changes.emit(true)
-    this.itemservice.editItem(this.data.item.id,aux)
-    this.dialogRef.close()
+    this.itemservice.editItem(this.data.item.id,aux).subscribe((res:any) =>{
+      this.dialogRef.close()
+    })
+    
   }
 
   close() {
