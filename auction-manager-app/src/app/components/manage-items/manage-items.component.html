@@ -1,9 +1,9 @@
 <div class="container">
   <div class="top">
     <button mat-raised-button (click)="addItem()"> Add Item</button>
+    <h1> Items you are selling</h1>
   </div>
   <div class="selling">
-    <h1> Items you are selling</h1>
     <app-item *ngFor="let i of items" [type]=1 [item]=i (changes)="refresh($event)"></app-item>
   </div>
 </div>
