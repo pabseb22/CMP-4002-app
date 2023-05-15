@@ -21,7 +21,9 @@ export class BuyerComponent implements OnInit {
   }
 
   getAuctions(){
-    this.auctions =this.auctionservice.getAuctions();
+    this.auctionservice.getAuctions().subscribe((res:any) => {
+      this.auctions = res;
+    });
   }
 
   addItem(){

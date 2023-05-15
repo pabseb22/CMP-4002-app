@@ -24,21 +24,27 @@ export class YourAuctionsComponent implements OnInit {
 
   }
   getAuctions(){
-    let aux = this.auctionservice.getAuctions();
-    let email = this.activeUserService.getUser()
-    for (let i = 0, len = aux.length; i < len; i++) {
-      if(aux[i].endDate > new Date()){
-        this.closedAuctions.push(aux[i]);
-        continue
+    let aux = [];
+    this.auctionservice.getAuctions().subscribe((res:any) => {
+      aux = res;
+
+      let email = this.activeUserService.getUser()
+
+      for (let i = 0, len = aux.length; i < len; i++) {
+        if(aux[i].status == 1){
+          this.closedAuctions.push(aux[i]);
+          continue
+        }   
+          if(aux[i].bids[aux[i].bids.length-1] == email){
+            this.auctions.push(aux[i]);
+          }else if (aux[i].bids.includes(email)){
+            this.loosingAuctions.push(aux[i])
+          }
+        
       }
-      for(let j = 0, len = aux[i].bids.length;j<len;j++){
-        if(aux[i].bids[j].user == email && aux[i].bids[j].amount==aux[i].price){
-          this.auctions.push(aux[i]);
-        }else if (aux[i].bids[j].user==email){
-          this.loosingAuctions.push(aux[i])
-        }
-      }
-    }
+    });
+
+
 
   }
   addItem(){};

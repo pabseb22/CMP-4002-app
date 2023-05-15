@@ -1,6 +1,6 @@
 .card{
   display: flex;
-  background-color: rgba(0, 0, 100, 0.2);
+  background-color: rgba(43, 43, 124, 0.2);
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;

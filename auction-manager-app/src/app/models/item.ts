@@ -8,6 +8,7 @@ export class Item {
     public des:string,
     public available:number,
     public starting_price:number,
+    public interested: string[]
   ){
   }
   }
