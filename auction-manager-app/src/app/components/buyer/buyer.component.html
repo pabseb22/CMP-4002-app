@@ -1,8 +1,8 @@
 <div class="container">
   <div class="selling">
     <h1>Active Auctions</h1>
-    <ng-container *ngFor="let i of auctions">
-      <app-auction [auction]=i [type]=0></app-auction>
+    <ng-container *ngFor="let i of auctions" >
+      <app-auction [auction]=i [type]=0 *ngIf="i.status==0"></app-auction>
     </ng-container>
   </div>
 </div>

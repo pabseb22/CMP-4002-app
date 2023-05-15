@@ -49,7 +49,6 @@ export class AuctionService {
     this.getAuctions().subscribe((res:any) => {
       aux = res;
       for (let i = 0, len = aux.length; i < len; i++) {
-
         if(aux[i].id == acc){
           if(aux[i].price<amount){
             let bid = {auction_id :acc, amount: amount, email: this.activeuserService.getUser(), user_id: 0}

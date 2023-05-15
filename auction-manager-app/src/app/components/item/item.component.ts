@@ -54,7 +54,6 @@ export class ItemComponent implements OnInit{
         },
     });
     dialogRef.afterClosed().subscribe((res: any) => {
-      location.reload();
     });
    }else if (this.item.available == 0){
       Swal.fire("This item is beign auctioned, it cannot be changed")
@@ -74,9 +73,8 @@ export class ItemComponent implements OnInit{
     }).then((result) => {
       if (result.value) {
           this.itemservice.susbcribeToItem(this.item.id).subscribe((res:any) => {
-            location.reload();
+            this.ngOnInit()
           });
-
         Swal.fire(
           'Subscribed!',
         )
@@ -96,7 +94,7 @@ unsubscribe(){
     }).then((result) => {
       if (result.value) {
           this.itemservice.unsusbcribeToItem(this.item.id).subscribe((res:any) => {
-            location.reload();
+            this.ngOnInit()
           });;
         Swal.fire(
           'Unsubscribed!',

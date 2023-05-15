@@ -24,13 +24,16 @@ export class AuctionComponent implements OnInit {
 
   @Input() auction: Auction;
   @Input() type: number;
+  seller:boolean;
   enroled: boolean = false;
 
   ngOnInit(): void {
+    this.activeuser.getSellerStatus().subscribe(res=>{
+      this.seller = res
+    })
     if (this.auction.bids.includes(this.activeuser.getUser())) {
       this.enroled = true
     }
-
   }
 
   endAuction(){

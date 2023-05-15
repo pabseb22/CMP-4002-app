@@ -14,10 +14,7 @@ export class Auction {
     public bids:string[],
     public status:number
   ){
-
   }
   notifyBuyers(buyers:Buyer[]){
-
   }
-
 }

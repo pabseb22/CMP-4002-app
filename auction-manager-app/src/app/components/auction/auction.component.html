@@ -1,4 +1,4 @@
-<mat-card [ngClass]="{'card':true, 'disabled':enroled}" (click)="openDialog()" >
+<mat-card [ngClass]="{'card':true, 'disabled':enroled,'activated':auction.status==1}" (click)="openDialog()" >
   <div class="col">
   <h3>Id:{{auction.id}}</h3>
   </div>
@@ -12,6 +12,6 @@
   <div class="col">
   <h3> Closing Time:{{auction.endDate}}</h3>
   </div>
-  <button mat-button *ngIf="auction.status == 0" class="buttonSubscribe" style=" background-color: white;" (click)="endAuction()" >End Auction</button>
+  <button mat-button *ngIf="auction.status == 0 && seller" [ngClass]="{'buttonSubscribe':true}" style=" background-color: white;" (click)="endAuction()" >End Auction</button>
 </mat-card>
 

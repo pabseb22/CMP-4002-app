@@ -29,7 +29,6 @@ export class SellerComponent implements OnInit {
   ngOnInit(): void {
     this.getItems();
   }
-
   getItems(){
    this.auctionservice.getAuctions().subscribe((res:any)=>{
     this.items = res;
@@ -37,11 +36,7 @@ export class SellerComponent implements OnInit {
     this.itemsService.getItems().subscribe((res:any)=>{
       this.items_selling = res;
     });
-
   }
-
-
-
   openDialog() {
     const dialogRef =this.dialog.open(addAuction, {
       data: {
