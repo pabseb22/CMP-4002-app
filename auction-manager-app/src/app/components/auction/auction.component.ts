@@ -1,6 +1,6 @@
 import { Input, Component, OnInit, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Route } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { Auction } from 'src/app/models/auction';
 import { ActiveuserService } from 'src/app/services/activeuser.service';
@@ -18,7 +18,8 @@ export class AuctionComponent implements OnInit {
     private dialog: MatDialog,
     public spinner: NgxSpinnerService,
     public activeuser: ActiveuserService,
-    private auctionService: AuctionService
+    private auctionService: AuctionService,
+    private router:Router
   ) { }
 
   @Input() auction: Auction;
@@ -35,7 +36,8 @@ export class AuctionComponent implements OnInit {
   endAuction(){
     let acc = {auction_id: this.auction.id};
     this.auctionService.endAuciton(acc).subscribe((res:any) => {
-      location.reload()
+      Swal.fire("Auction Closed")
+      this.router.navigate(['manage-items'])
     })
 
   }
@@ -46,7 +48,6 @@ export class AuctionComponent implements OnInit {
         Swal.fire("You are already in this auction, go to My Auction page")
         return
       }
-
       const dialogRef = this.dialog.open(OptionsDialog, { data: this.auction });
     } else if (this.type == 1) {
       const dialogRef = this.dialog.open(NonActiveAuction, { data: this.auction });

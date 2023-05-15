@@ -29,11 +29,12 @@ export class ItemComponent implements OnInit{
   subscribed:boolean;
 
   ngOnInit(): void {
-
-    if(this.item.interested.includes(this.activeUserService.getUser())){
-      this.subscribed=true;
-    }else if(!this.item.interested.includes(this.activeUserService.getUser())){
-      this.subscribed=false;
+    if(this.item.interested != undefined){
+      if(this.item.interested.includes(this.activeUserService.getUser())){
+        this.subscribed=true;
+      }else if(!this.item.interested.includes(this.activeUserService.getUser())){
+        this.subscribed=false;
+      }
     }
   }
 
@@ -75,7 +76,7 @@ export class ItemComponent implements OnInit{
           this.itemservice.susbcribeToItem(this.item.id).subscribe((res:any) => {
             location.reload();
           });
-          
+
         Swal.fire(
           'Subscribed!',
         )
@@ -100,7 +101,7 @@ unsubscribe(){
         Swal.fire(
           'Unsubscribed!',
         )
-          
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       }
     })

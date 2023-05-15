@@ -7,6 +7,7 @@ import { Item } from '../models/item';
 import { ActiveuserService } from './activeuser.service';
 import { ItemsService } from './items.service';
 import { HttpService } from './http.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuctionService {
 
   constructor(private itemservice:ItemsService,
     private activeuserService:ActiveuserService,
-    private http: HttpService
+    private http: HttpService,
+    private router:Router
   ) {
 
   }
@@ -47,12 +49,13 @@ export class AuctionService {
     this.getAuctions().subscribe((res:any) => {
       aux = res;
       for (let i = 0, len = aux.length; i < len; i++) {
- 
+
         if(aux[i].id == acc){
           if(aux[i].price<amount){
             let bid = {auction_id :acc, amount: amount, email: this.activeuserService.getUser(), user_id: 0}
             this.addBidDetail(bid).subscribe((res:any)=> {
-              location.reload();
+            Swal.fire("Bid placed")
+            this.router.navigate(['profile'])
             })
           }else{
             Swal.fire("You have to make a bid bigger that current price")
@@ -61,7 +64,7 @@ export class AuctionService {
       }
     });
 
-    
+
 
   }
 
