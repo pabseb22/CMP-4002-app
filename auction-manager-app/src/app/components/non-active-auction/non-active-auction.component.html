@@ -2,7 +2,7 @@
   <div class="selling">
     <h1>Non Active Items</h1>
     <ng-container *ngFor="let i of items">
-      <app-item [item]=i [type]=2></app-item>
+      <app-item [item]=i [type]=2 *ngIf="i.available == 1"></app-item>
     </ng-container>
   </div>
 

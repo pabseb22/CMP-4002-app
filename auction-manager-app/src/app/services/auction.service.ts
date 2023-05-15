@@ -6,53 +6,62 @@ import { Buyer } from '../models/buyer';
 import { Item } from '../models/item';
 import { ActiveuserService } from './activeuser.service';
 import { ItemsService } from './items.service';
+import { HttpService } from './http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuctionService {
   auctions:Auction[] =[];
+  URL_API = "http://localhost:3000";
 
   constructor(private itemservice:ItemsService,
-    private activeuserService:ActiveuserService
+    private activeuserService:ActiveuserService,
+    private http: HttpService
   ) {
-    // let items = []
-
-    // this.itemservice.getItems().subscribe((res:any)=>{
-    //   items = res;
-    //   this.auctions.push(new Auction(0,items[0],1,new Date(),new Date(),[]))
-    // });
 
   }
 
   getAuctions(){
-    return this.auctions
+    return this.http.get(`${this.URL_API}/get-auctions`);
   }
 
   addAuction(acc:Auction){
-    let item = acc.items;
-    // for item.interested{
-    //   les mandas un mail
-    // }
-    this.auctions.push(acc)
+    return this.http.post(`${this.URL_API}/add-auction`, acc);
   }
 
-  addBid(acc:number,price:number){
-    for (let i = 0, len = this.auctions.length; i < len; i++) {
-      if(this.auctions[i].id == acc){
-        if(this.auctions[i].price<price){
-          this.auctions[i].price = price;
-          for (let j = 0, len = this.auctions[i].bids.length; j < len; j++) {
-            if(this.auctions[i].bids[j].user == this.activeuserService.getUser()){
-              const index = this.auctions[i].bids.indexOf(this.auctions[i].bids[j]);
-              this.auctions[i].bids.splice(index, 1)
-            }
+  checkBid(acc:any){
+    return this.http.post(`${this.URL_API}/check-bid`, acc);
+  }
+
+  endAuciton(acc:any){
+    return this.http.post(`${this.URL_API}/end-auction`, acc);
+  }
+
+  addBidDetail(bid:Bid){
+    return this.http.post(`${this.URL_API}/add-bid`, bid);
+  }
+
+  addBid(acc:number,amount:number){
+    let aux = [];
+    this.getAuctions().subscribe((res:any) => {
+      aux = res;
+      for (let i = 0, len = aux.length; i < len; i++) {
+ 
+        if(aux[i].id == acc){
+          if(aux[i].price<amount){
+            let bid = {auction_id :acc, amount: amount, email: this.activeuserService.getUser(), user_id: 0}
+            this.addBidDetail(bid).subscribe((res:any)=> {
+              location.reload();
+            })
+          }else{
+            Swal.fire("You have to make a bid bigger that current price")
           }
-          this.auctions[i].bids.push(new Bid(this.activeuserService.getUser(),price))
-        }else{
-          Swal.fire("You have to make a bid bigger that current price")
         }
       }
-    }
+    });
+
+    
+
   }
 }

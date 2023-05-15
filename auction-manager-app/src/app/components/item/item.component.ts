@@ -29,11 +29,12 @@ export class ItemComponent implements OnInit{
   subscribed:boolean;
 
   ngOnInit(): void {
-    // if(this.item.interested.includes(this.activeUserService.getUser())){
-    //   this.subscribed=true;
-    // }else if(!this.item.interested.includes(this.activeUserService.getUser())){
-    //   this.subscribed=false;
-    // }
+
+    if(this.item.interested.includes(this.activeUserService.getUser())){
+      this.subscribed=true;
+    }else if(!this.item.interested.includes(this.activeUserService.getUser())){
+      this.subscribed=false;
+    }
   }
 
   transform(value: string): string {
@@ -45,7 +46,7 @@ export class ItemComponent implements OnInit{
   }
 
   openDialog() {
-    if(this.type==1 && this.item.available){
+    if(this.type==1 && this.item.available == 1){
       const dialogRef = this.dialog.open(editItem, {
         data: {
           item: this.item
@@ -54,7 +55,7 @@ export class ItemComponent implements OnInit{
     dialogRef.afterClosed().subscribe((res: any) => {
       location.reload();
     });
-   }else if (!this.item.available){
+   }else if (this.item.available == 0){
       Swal.fire("This item is beign auctioned, it cannot be changed")
     }
 
@@ -71,8 +72,10 @@ export class ItemComponent implements OnInit{
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.value) {
-          this.itemservice.susbcribeToItem(this.item.id);
-          this.ngOnInit()
+          this.itemservice.susbcribeToItem(this.item.id).subscribe((res:any) => {
+            location.reload();
+          });
+          
         Swal.fire(
           'Subscribed!',
         )
@@ -91,11 +94,13 @@ unsubscribe(){
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.value) {
-          this.itemservice.unsusbcribeToItem(this.item.id);
+          this.itemservice.unsusbcribeToItem(this.item.id).subscribe((res:any) => {
+            location.reload();
+          });;
         Swal.fire(
           'Unsubscribed!',
         )
-          this.ngOnInit()
+          
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       }
     })
@@ -119,7 +124,7 @@ export class editItem {
   }
 
   edit(name:string,price:string,imgsrc:string,des:string) {
-    let aux = new Item(this.data.item.id,name,imgsrc,des,1,parseFloat(price))
+    let aux = new Item(this.data.item.id,name,imgsrc,des,1,parseFloat(price),[])
     this.changes.emit(true)
     this.itemservice.editItem(this.data.item.id,aux).subscribe((res:any) =>{
       this.dialogRef.close()

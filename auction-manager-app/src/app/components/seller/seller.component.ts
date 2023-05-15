@@ -27,28 +27,29 @@ export class SellerComponent implements OnInit {
   items_selling:Item[]=[]
 
   ngOnInit(): void {
-    this.getItems(2);
+    this.getItems();
   }
 
-  getItems(userID:number){
-    //request;
-    //this.items = this.auctionservice.getAuctions()
+  getItems(){
+   this.auctionservice.getAuctions().subscribe((res:any)=>{
+    this.items = res;
+  });
     this.itemsService.getItems().subscribe((res:any)=>{
-      for(let i = 0; i< res.length; i++){
-        this.items.push(new Auction(0,res[i],1,new Date(),new Date(),[]))
-      }
       this.items_selling = res;
     });
-    //return this.items
+
   }
 
 
 
   openDialog() {
-    this.dialog.open(addAuction, {
+    const dialogRef =this.dialog.open(addAuction, {
       data: {
         items: this.items_selling
       },
+    });
+    dialogRef.afterClosed().subscribe((res: any) => {
+      this.ngOnInit()
     });
   }
 
@@ -76,7 +77,9 @@ export class addAuction {
     let da = new Date()
     da.setDate((start_time.getDate() + parseInt(this.toggleBtn.value)))
 
-    this.auctionservice.addAuction(new Auction(item_to_be_auctioned[0].id,item_to_be_auctioned[0],item_to_be_auctioned[0].starting_price,start_time,da,[]))
+    this.auctionservice.addAuction(new Auction(item_to_be_auctioned[0].id,item_to_be_auctioned[0],item_to_be_auctioned[0].starting_price,start_time,da,"","",[], 0)).subscribe((res:any) => {
+
+    })
     this.itemservice.changeItemStatus(item_to_be_auctioned[0].id ,0)
     this.close()
   }

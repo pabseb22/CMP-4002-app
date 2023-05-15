@@ -72,7 +72,7 @@ export class addItem {
       this.dialogRef.close();
   }
   addItem(data:any){
-    this.itemsService.addItem(new Item(data.id,data.name,data.image,data.des,0,data.price)).subscribe((res:any)=>{
+    this.itemsService.addItem(new Item(data.id,data.name,data.image,data.des,1,data.price,[])).subscribe((res:any)=>{
       this.dialogRef.close()
       
     })

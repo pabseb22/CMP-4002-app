@@ -49,12 +49,7 @@ export class ItemsService {
   }
 
   unsusbcribeToItem(id:number){
-    for (let i = 0, len = this.items.length; i < len; i++) {
-      if(this.items[i].id == id){
-        let buyer = this.activeUserService.getUser();
-        //const index = this.items[i].interested.indexOf(buyer);
-        //this.items[i].interested.splice(index, 1)
-      }
-    }
+    let data = {item_id: id, email: this.activeUserService.getUser()};
+    return this.http.post(`${this.URL_API}/unsubscribe-to-item`, data);
   }
 }
