@@ -6,7 +6,7 @@ export class SellerClass extends User{
     email:string,
     password:string,
   ){
-    super(name,lastname,ci,email,password,0)
+    super(name,lastname,email,0)
   }
 
 }

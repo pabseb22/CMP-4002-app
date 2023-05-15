@@ -38,16 +38,12 @@ const routes: Routes = [
     component: ProfileComponent
   },
   {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
     path: 'auction',
     component: AuctionComponent
   },
   {
     path: "**",
-    component: LoginComponent
+    redirectTo: ''
   }
 
 ];

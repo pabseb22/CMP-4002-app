@@ -1,4 +1,5 @@
 import {Input, Component } from '@angular/core';
+import { ActiveuserService } from './services/activeuser.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,10 @@ import {Input, Component } from '@angular/core';
 export class AppComponent {
   title = 'auction-manager-app';
   @Input() menuItems: any[] =["buyer","seller","login","auction"];
+  @Input() connected:boolean
+  constructor(private activeuser:ActiveuserService){
+    this.activeuser.getLoggedInStatus().subscribe(res=>{
+      this.connected = res
+    })
+  }
 }

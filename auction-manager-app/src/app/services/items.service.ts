@@ -9,14 +9,13 @@ import { Observable, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ItemsService {
-  URL_API = "http://localhost:3000";
-  items:Item[]=[]
+  URL_API = "http://localhost:3000"; items:Item[]=[]
 
   constructor(
     private activeUserService:ActiveuserService,
     private http: HttpService
   ) {
-  
+
   }
 
   getItems(){
@@ -34,7 +33,6 @@ export class ItemsService {
       }
     }
   }
-
   eliminateItem(id:number){
     this.items = this.items.filter(function(obj:Item){
       return obj.id == id

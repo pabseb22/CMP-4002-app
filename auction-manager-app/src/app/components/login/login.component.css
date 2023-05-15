@@ -1,0 +1,21 @@
+
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vh;
+  height: 90vh;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  width: 400px;
+  height: 100%;
+}
+.inputs{
+  width: 100%;
+}

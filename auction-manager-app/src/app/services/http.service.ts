@@ -16,7 +16,7 @@ export class HttpService {
     })
   }
 
-  constructor(private http: HttpClient, private spinner: NgxSpinnerService) { 
+  constructor(private http: HttpClient, private spinner: NgxSpinnerService) {
   }
 
   /**
@@ -37,7 +37,7 @@ export class HttpService {
    */
   public post<T>(url: string, body: any, urlParams?: HttpParams) {
     return this.http.post<T>(url, body, this.httpOptions).pipe(retry(1), finalize(() => this.spinner.hide()), catchError(this.handleError),
-      
+
     );
   }
   /**

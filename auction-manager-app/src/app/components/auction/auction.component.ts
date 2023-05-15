@@ -108,8 +108,6 @@ export class NonActiveAuction {
     this.dialogRef.close()
   }
   save(){
-
   }
-
 
 }

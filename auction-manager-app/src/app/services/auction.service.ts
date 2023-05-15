@@ -55,4 +55,7 @@ export class AuctionService {
       }
     }
   }
+
+  eliminateAuction(id:number){
+  }
 }

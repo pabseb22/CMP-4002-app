@@ -75,7 +75,6 @@ export class addAuction {
     let start_time =  new Date()
     let da = new Date()
     da.setDate((start_time.getDate() + parseInt(this.toggleBtn.value)))
-
     this.auctionservice.addAuction(new Auction(item_to_be_auctioned[0].id,item_to_be_auctioned[0],item_to_be_auctioned[0].starting_price,start_time,da,[]))
     this.itemservice.changeItemStatus(item_to_be_auctioned[0].id ,0)
     this.close()

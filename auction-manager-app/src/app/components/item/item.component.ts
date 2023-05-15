@@ -124,7 +124,7 @@ export class editItem {
     this.itemservice.editItem(this.data.item.id,aux).subscribe((res:any) =>{
       this.dialogRef.close()
     })
-    
+
   }
 
   close() {
