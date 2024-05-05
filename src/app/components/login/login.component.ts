@@ -20,12 +20,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     }
-  login(user,password){
-    let aux =  this.http.post(`${this.URL_API}/login`, [user,password]).subscribe((res:any)=>{
+  login(email:string,password:string){
+    let aux =  this.http.post(`${this.URL_API}/login`, {email,password}).subscribe((res:any)=>{
       if(res=="error"){
         Swal.fire("Something went wrong with validation")
       }else{
-        let data = res.log_data[0]
+        console.log(res);
+        let data = res
         this.ac.updateLoggedInStatus(true);
         this.ac.setUser(new User(data.name,data.lastname,data.email,data.type))
         if(data.type ==1 ){

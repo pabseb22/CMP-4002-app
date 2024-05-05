@@ -4,7 +4,6 @@ import { Route, Router } from '@angular/router';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { Auction } from 'src/app/models/auction';
 import { ActiveuserService } from 'src/app/services/activeuser.service';
-import { AuctionService } from 'src/app/services/auction.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +17,6 @@ export class AuctionComponent implements OnInit {
     private dialog: MatDialog,
     public spinner: NgxSpinnerService,
     public activeuser: ActiveuserService,
-    private auctionService: AuctionService,
     private router:Router
   ) { }
 
@@ -38,10 +36,7 @@ export class AuctionComponent implements OnInit {
 
   endAuction(){
     let acc = {auction_id: this.auction.id};
-    this.auctionService.endAuciton(acc).subscribe((res:any) => {
-      Swal.fire("Auction Closed")
-      this.router.navigate(['manage-items'])
-    })
+
 
   }
 
@@ -68,7 +63,6 @@ export class OptionsDialog {
   value = 0;
   constructor(@Inject(MAT_DIALOG_DATA) public data: Auction,
     private dialogRef: MatDialogRef<OptionsDialog>,
-    private auctionService: AuctionService,
     private spinner: NgxSpinnerService
   ) {
   }
@@ -76,7 +70,6 @@ export class OptionsDialog {
     this.dialogRef.close()
   }
   save(price) {
-    this.auctionService.addBid(this.data.id, price);
     this.close();
   }
 
@@ -90,7 +83,6 @@ export class YourAuction {
   value = 0;
   constructor(@Inject(MAT_DIALOG_DATA) public data: Auction,
     private dialogRef: MatDialogRef<YourAuction>,
-    private auctionService: AuctionService,
     private spinner: NgxSpinnerService
 
   ) {
@@ -99,7 +91,7 @@ export class YourAuction {
     this.dialogRef.close()
   }
   save(price) {
-    this.auctionService.addBid(this.data.id, price)
+
   }
 
 }
@@ -112,7 +104,6 @@ export class NonActiveAuction {
   value = 0;
   constructor(@Inject(MAT_DIALOG_DATA) public data: Auction,
     private dialogRef: MatDialogRef<NonActiveAuction>,
-    private auctionService: AuctionService,
     private spinner: NgxSpinnerService
   ) {
   }

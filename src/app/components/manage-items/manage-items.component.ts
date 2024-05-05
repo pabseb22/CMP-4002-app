@@ -3,7 +3,7 @@ import { MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSelectionList } from '@angular/material/list';
 import { Item } from 'src/app/models/item';
-import { ItemsService } from 'src/app/services/items.service';
+
 
 @Component({
   selector: 'app-manage-items',
@@ -13,7 +13,6 @@ import { ItemsService } from 'src/app/services/items.service';
 export class ManageItemsComponent implements OnInit {
 
   constructor(
-    private itemsService: ItemsService,
     public dialog: MatDialog,
   ) { }
 
@@ -30,9 +29,9 @@ export class ManageItemsComponent implements OnInit {
   }
   getItems(){
     //request;
-    this.itemsService.getItems().subscribe((res:any)=>{
-      this.items = res;
-    });
+    // this.itemsService.getItems().subscribe((res:any)=>{
+    //   this.items = res;
+    // });
     return this.items
   }
   addItem(){
@@ -64,18 +63,13 @@ export class addItem {
 
   time:string;
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
-    private dialogRef: MatDialogRef<addItem>,
-    private itemsService:ItemsService
+    private dialogRef: MatDialogRef<addItem>
   ) {
   }
   close() {
       this.dialogRef.close();
   }
   addItem(data:any){
-    this.itemsService.addItem(new Item(data.id,data.name,data.image,data.des,1,data.price,[])).subscribe((res:any)=>{
-      this.dialogRef.close()
-      
-    })
     
   }
 

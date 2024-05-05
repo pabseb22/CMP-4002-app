@@ -1,21 +1,71 @@
-
-.container{
+body {
+  margin: 0;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vh;
-  height: 90vh;
+  background-color: #f0f0f0; /* Background color */
 }
 
-.main{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
-  width: 400px;
-  height: 100%;
+.main {
+  width: 30%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 20px;
+  background-color: #ffffff; /* Main container background color */
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
 }
-.inputs{
-  width: 100%;
+
+h1 {
+  font-size: 36px; /* Larger font size */
+  text-align: center;
+}
+
+.run {
+  color: #ff0000; /* Red color */
+}
+
+.icon {
+  width: 75px; /* Adjust size as needed */
+  height: 75px; /* Adjust size as needed */
+  margin-top: 20px;
+}
+
+h3 {
+  color: #333333; /* Text color */
+  margin-top: 10px;
+}
+
+.inputs {
+  width: calc(100% - 20px); /* Adjust width */
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #cccccc; /* Input border color */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.inputs:focus {
+  outline: none;
+  border-color: #0099ff; /* Input border color on focus */
+}
+
+button {
+  width: calc(100% - 20px); /* Adjust width */
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #0099ff; /* Button background color */
+  color: #ffffff; /* Button text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0077cc; /* Button background color on hover */
 }

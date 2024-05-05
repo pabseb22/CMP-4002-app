@@ -4,8 +4,6 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { MatSelectionList } from '@angular/material/list';
 import { Buyer } from 'src/app/models/buyer';
 import { Item } from 'src/app/models/item';
-import { AuctionService } from 'src/app/services/auction.service';
-import { ItemsService } from 'src/app/services/items.service';
 import { EventEmitter } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActiveuserService } from 'src/app/services/activeuser.service';
@@ -19,7 +17,6 @@ export class ItemComponent implements OnInit{
 
 
   constructor(public dialog: MatDialog,
-    public itemservice:ItemsService,
     public activeUserService:ActiveuserService
   )
   {}
@@ -72,9 +69,7 @@ export class ItemComponent implements OnInit{
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.value) {
-          this.itemservice.susbcribeToItem(this.item.id).subscribe((res:any) => {
-            this.ngOnInit()
-          });
+
         Swal.fire(
           'Subscribed!',
         )
@@ -93,9 +88,7 @@ unsubscribe(){
       cancelButtonText: 'No'
     }).then((result) => {
       if (result.value) {
-          this.itemservice.unsusbcribeToItem(this.item.id).subscribe((res:any) => {
-            this.ngOnInit()
-          });;
+
         Swal.fire(
           'Unsubscribed!',
         )
@@ -118,16 +111,12 @@ export class editItem {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data:any,
     private dialogRef: MatDialogRef<editItem>,
-    private itemservice:ItemsService
   ) {
   }
 
   edit(name:string,price:string,imgsrc:string,des:string) {
     let aux = new Item(this.data.item.id,name,imgsrc,des,1,parseFloat(price),[])
     this.changes.emit(true)
-    this.itemservice.editItem(this.data.item.id,aux).subscribe((res:any) =>{
-      this.dialogRef.close()
-    })
 
   }
 
