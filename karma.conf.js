@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/auction-manager-app'),
+      dir: require('path').join(__dirname, './coverage/CMP-4002-app'),
       subdir: '.',
       reporters: [
         { type: 'html' },

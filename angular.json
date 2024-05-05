@@ -9,7 +9,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "auction-manager-app": {
+    "CMP-4002-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/auction-manager-app",
+            "outputPath": "dist/CMP-4002-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -77,10 +77,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "auction-manager-app:build:production"
+              "browserTarget": "CMP-4002-app:build:production"
             },
             "development": {
-              "browserTarget": "auction-manager-app:build:development"
+              "browserTarget": "CMP-4002-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "auction-manager-app:build"
+            "browserTarget": "CMP-4002-app:build"
           }
         },
         "test": {
@@ -112,5 +112,5 @@
       }
     }
   },
-  "defaultProject": "auction-manager-app"
+  "defaultProject": "CMP-4002-app"
 }

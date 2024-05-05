@@ -7,7 +7,7 @@ import { ActiveuserService } from './services/activeuser.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'auction-manager-app';
+  title = 'CMP-4002-app';
   @Input() menuItems: any[] =["buyer","seller","login","auction"];
   @Input() connected:boolean
   constructor(private activeuser:ActiveuserService){
