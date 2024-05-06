@@ -1,0 +1,47 @@
+<div class="container">
+    <h2>Active Events</h2>
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Description</th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Start Time</th>
+              <th>Kit Pickup Location</th>
+              <th>Kit Pickup Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let event of events">
+              <td>{{ event.event_name }}</td>
+              <td>{{ event.event_description }}</td>
+              <td>{{ event.event_date | date }}</td>
+              <td>{{ event.event_location }}</td>
+              <td>{{ event.event_start_time | date }}</td>
+              <td>{{ event.event_kit_pickup_location }}</td>
+              <td>{{ event.event_kit_pickup_date | date }}</td>
+          <td>
+            <div class="button-container">
+              <button class="btn btn-primary" (click)="openRegistrationDialog(event)">Register</button>
+            </div>
+            <!-- Registration Dialog -->
+            <div class="registration-dialog" *ngIf="event.registrationDialogOpen">
+              <h3>Register for {{ event.name }}</h3>
+              <select [(ngModel)]="selectedCategory" class="category-select">
+                <option *ngFor="let category of event.categories" [value]="category.category_id">{{ category.category_name }}</option>
+              </select>
+              <div class="dialog-buttons">
+                <button class="btn btn-primary" (click)="registerForEvent(event)">Submit</button>
+                <button class="btn btn-secondary" (click)="closeRegistrationDialog(event)">Cancel</button>
+              </div>
+            </div>
+            <!-- End Registration Dialog -->
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

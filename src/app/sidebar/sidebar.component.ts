@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
 
   @Input() menuItems: any[] =["buyer","seller","login","auction"];
   connected:boolean;
-  seller:boolean;
+
 
   constructor(private ac:ActiveuserService) {
     this.ac.getLoggedInStatus().subscribe(res=>{
@@ -21,9 +21,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ac.getSellerStatus().subscribe(res=>{
-      this.seller = res
-    })
+
   }
 
   logout(){

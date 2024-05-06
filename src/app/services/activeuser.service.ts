@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Buyer } from '../models/buyer';
 import { User } from '../models/user';
 
 @Injectable({
@@ -8,10 +7,8 @@ import { User } from '../models/user';
 })
 export class ActiveuserService {
 
-  isseller:boolean;
   user: User
-  public connected$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public seller: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public connected$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor() {
   }
@@ -25,29 +22,12 @@ export class ActiveuserService {
       this.connected$.next(LoggedIn);
   }
 
-  getSellerStatus(): Observable<boolean> {
-      return this.seller.asObservable();
-  }
-
-  // Updates the Behavior Subject
-  updateSeller(LoggedIn: boolean): void {
-      this.seller.next(LoggedIn);
-  }
-
   getUser(){
-    return this.user.email
+    return this.user
   }
 
   setUser(user:User){
     this.user = user;
-    if(this.user.type==1){
-      this.isseller=true
-    }else{
-      this.isseller=false
-    }
-  }
-  getType(){
-    return this.isseller
   }
 
 }

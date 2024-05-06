@@ -1,0 +1,35 @@
+<div class="container">
+    <h2>Results for Event Marathon A</h2>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Description</th>
+        <th>User Name</th>
+        <th>User Last Name</th>
+        <th>Start Time</th>
+        <th>Finish Time</th>
+        <th>Running Number</th>
+        <th>Register ID</th>
+        <th>Category Name</th>
+        <th>Score</th>
+        <th>Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of results">
+        <td>{{ result.event_name }}</td>
+        <td>{{ result.event_description }}</td>
+        <td>{{ result.user_name }}</td>
+        <td>{{ result.user_lastname }}</td>
+        <td>{{ result.start_time | date }}</td>
+        <td>{{ result.finish_time | date }}</td>
+        <td>{{ result.running_number }}</td>
+        <td>{{ result.register_id }}</td>
+        <td>{{ result.category_name }}</td>
+        <td>{{ result.score }}</td>
+        <td>{{ result.position }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
