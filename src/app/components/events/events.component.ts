@@ -62,7 +62,7 @@ export class EventsComponent implements OnInit {
     }
     let user = this.ac.getUser();
     const eventData = {
-      external_user_id: user.user_id,
+      external_user_id: user.user_id || 1,
       event_id: event.event_id,
       category_id: this.selectedCategory,
       running_number: '00001',
